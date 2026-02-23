@@ -1,0 +1,265 @@
+/* ============================================= */
+/* 📌 ESTILOS GLOBALES */
+/* ============================================= */
+
+/* Variables de color para fácil edición */
+:root {
+    --bg: #f3f4ef;        /* Fondo crema */
+    --text: #000000;      /* Texto negro */
+    --primary: #ff4e2e;   /* Rojo PostHog */
+    --border: #000000;    /* Bordes negros marcados */
+    --shadow: 5px 5px 0px 0px #000000; /* Sombra "Neo-brutalista" */
+    --accent: #3498db;    /* Azul para enlaces y detalles secundarios */
+}
+
+/* Estilo base del cuerpo */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    color: var(--text);
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+}
+
+/* ============================================= */
+/* 📌 ENCABEZADO (NAVEGACIÓN) */
+/* ============================================= */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--border);
+    padding-bottom: 15px;
+    margin-bottom: 40px;
+}
+
+.logo {
+    font-weight: 900;
+    font-size: 1.5rem;
+}
+
+.logo span {
+    background: var(--primary);
+    color: white;
+    padding: 2px 8px;
+    border: 2px solid var(--border);
+    box-shadow: 2px 2px 0px var(--border);
+}
+
+.btn-nav {
+    background: white;
+    border: 2px solid var(--border);
+    padding: 5px 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    cursor: pointer;
+    box-shadow: 2px 2px 0px var(--border);
+    text-decoration: none;
+    color: var(--text);
+}
+
+.btn-nav.email {
+    background: var(--primary);
+    color: white;
+}
+
+/* ============================================= */
+/* 📌 TARJETA DEL TÍTULO CON FONDO DE PING PONG */
+/* ============================================= */
+/* Estilo para la tarjeta del título con fondo de ping pong */
+.title-card {
+    position: relative;
+    overflow: hidden;
+    height: 120px; /* Altura fija */
+    margin-bottom: 20px;
+    border: 3px solid var(--border);
+    box-shadow: var(--shadow);
+    background-color: white;
+}
+
+.title-card canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Ancho completo del contenedor */
+    height: 100%; /* Alto completo del contenedor */
+    z-index: 1;
+    background-color: #f9f9f9;
+}
+
+
+.title-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+.role-title {
+    font-size: 2.5rem;
+    letter-spacing: -1px;
+    margin: 0;
+    line-height: 1.2;
+    color: var(--text);
+    font-weight: 900;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #555;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* ============================================= */
+/* 📌 TARJETAS (SECCIONES DEL CV) */
+/* ============================================= */
+.card {
+    background: white;
+    border: 3px solid var(--border);
+    box-shadow: var(--shadow);
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+h2 {
+    background: #e5e7e0;
+    border: 2px solid var(--border);
+    padding: 5px 15px;
+    display: inline-block;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--text);
+}
+
+/* ============================================= */
+/* 📌 BOTONES Y CAJAS INTERACTIVAS */
+/* ============================================= */
+.btn {
+    background: white;
+    border: 2px solid var(--border);
+    padding: 8px 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 3px 3px 0px var(--border);
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0px var(--border);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    border: 2px solid var(--border);
+}
+
+.sincere-box {
+    display: none;
+    margin-top: 15px;
+    padding: 15px;
+    background: #fff3d0;
+    border: 2px dashed var(--border);
+    font-family: monospace;
+    font-weight: bold;
+}
+
+/* ============================================= */
+/* 📌 EXPERIENCIA LABORAL */
+/* ============================================= */
+.experience-item {
+    border-left: 3px dotted var(--border);
+    padding-left: 20px;
+    margin: 20px 0;
+}
+
+.job-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 900;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.company {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.date {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.achievements {
+    margin-left: 10px;
+}
+
+.achievements li {
+    margin-bottom: 8px;
+}
+
+/* ============================================= */
+/* 📌 HABILIDADES Y BADGES */
+/* ============================================= */
+.skills-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.skills-table td {
+    padding: 8px;
+    vertical-align: top;
+    border-bottom: 1px solid #eee;
+}
+
+.skills-table td:first-child {
+    font-weight: bold;
+    width: 30%;
+}
+
+.badge-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.badge {
+    background: white;
+    border: 2px solid var(--border);
+    padding: 5px 12px;
+    font-weight: bold;
+    box-shadow: 2px 2px 0px var(--border);
+    font-size: 0.9rem;
+}
+
+.link {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
