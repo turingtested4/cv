@@ -4,17 +4,17 @@
 
 /* Variables de color para fácil edición */
 :root {
-    --bg: #f3f4ef;        /* Fondo crema */
-    --text: #000000;      /* Texto negro */
-    --primary: #ff4e2e;   /* Rojo PostHog */
-    --border: #000000;    /* Bordes negros marcados */
+    --bg: #f3f4ef; /* Fondo crema */
+    --text: #000000; /* Texto negro */
+    --primary: #ff4e2e; /* Rojo PostHog */
+    --border: #000000; /* Bordes negros marcados */
     --shadow: 5px 5px 0px 0px #000000; /* Sombra "Neo-brutalista" */
-    --accent: #3498db;    /* Azul para enlaces y detalles secundarios */
+    --accent: #3498db; /* Azul para enlaces y detalles secundarios */
 }
 
 /* Estilo base del cuerpo */
 body {
-    font-family: 'Segoe UI', sans-serif;
+    font-family: "Segoe UI", sans-serif;
     background-color: var(--bg);
     margin: 0;
     padding: 20px;
@@ -95,7 +95,6 @@ nav {
     background-color: #f9f9f9;
 }
 
-
 .title-content {
     position: relative;
     z-index: 2;
@@ -143,6 +142,15 @@ h2 {
     display: inline-block;
     font-size: 1.2rem;
     margin-bottom: 15px;
+    color: var(--text);
+}
+
+/*construccion*/
+h3 {
+    border: 2px solid var(--border);
+    padding: 5px 15px;
+    font-size: 1 rem;
+    margin-bottom: 10px;
     color: var(--text);
 }
 

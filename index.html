@@ -1,172 +1,284 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - María de los Dolores Adamuz Barranco</title>
-    <!-- Enlace al archivo CSS externo -->
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <!-- Encabezado con logo y botones -->
-        <nav>
-            <div class="logo">
-                MARIA <span>CV</span>
-            </div>
-            <div>
-                <a href="#" class="btn-nav">ENGLISH GB</a>
-                <a href="mailto:tuemail@example.com" class="btn-nav email">EMAIL</a>
-            </div>
-        </nav>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CV - María de los Dolores Adamuz Barranco</title>
+        <!-- Enlace al archivo CSS externo -->
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div class="container">
+            <!-- Encabezado con logo y botones -->
+            <nav>
+                <div class="logo">MARIA <span>CV</span></div>
+                <div>
+                    <a href="#" class="btn-nav">ENGLISH GB</a>
+                    <a href="mailto:tuemail@example.com" class="btn-nav email"
+                        >EMAIL</a
+                    >
+                </div>
+            </nav>
 
-        <!-- Tarjeta principal: Título y subtítulo con fondo de ping pong -->
-        <div class="card title-card">
-            <canvas id="pongCanvas" width="760" height="100"></canvas>
-            <div class="title-content">
-                <h1 class="role-title">Backend and Data Engineer</h1>
-                <p class="subtitle">> Liderando la Calidad de Datos en Logicalis</p>
+            <!-- Tarjeta principal: Título y subtítulo con fondo de ping pong -->
+            <div class="card title-card">
+                <canvas id="pongCanvas" width="760" height="100"></canvas>
+                <div class="title-content">
+                    <h1 class="role-title">Backend and Data Engineer</h1>
+                    <p class="subtitle">
+                        > Liderando la Calidad de Datos en Logicalis
+                    </p>
+                </div>
             </div>
-        </div>
 
-        <!-- Tarjeta "Sobre mí" -->
-        <div class="card">
-            <h2>/ SOBRE MÍ</h2>
-            <p>
-                Especialista en <strong>flujos de datos complejos</strong> y <strong>gobernanza de datos</strong>.
-                Capaz de mediar entre algoritmos avanzados y equipos multidisciplinares para garantizar la calidad de datos críticos.
-                Actualmente en transición a <strong>Backend Developer</strong>, formándome en <strong>Python y Go</strong> (boot.dev).
-                Experiencia internacional en Milán y Madrid.
-            </p>
-            <button class="btn btn-primary" onclick="toggleSincere()">ACTIVAR MODO SINCERO 😎</button>
-            <div class="sincere-box" id="sincereBox">
+            <!-- Tarjeta "Sobre mí" -->
+            <div class="card">
+                <h2>/ SOBRE MÍ</h2>
                 <p>
-                    Soy una apasionada de Linux, los videojuegos competitivos (CS:GO, Valorant) y la natación.
-                    Me encanta resolver problemas técnicos y aprender cosas nuevas.
-                    ¡Siempre en modo mejora continua y buscando superar mis límites!
+                    Especialista en <strong>flujos de datos complejos</strong> y
+                    <strong>gobernanza de datos</strong>. Capaz de mediar entre
+                    algoritmos avanzados y equipos multidisciplinares para
+                    garantizar la calidad de datos críticos. Actualmente en
+                    transición a <strong>Backend Developer</strong>, formándome
+                    en <strong>Python y Go</strong> (boot.dev). Experiencia
+                    internacional en Milán y Madrid.
                 </p>
+                <button class="btn btn-primary" onclick="toggleSincere()">
+                    ACTIVAR MODO SINCERO 😎
+                </button>
+                <div class="sincere-box" id="sincereBox">
+                    <p>
+                    Buenas! me gusta cacharrear con cosas y ahí entra el software,
+                    me chifla a hacer deporte, amo la conciliacion laboral y dormir 8 horas al dia.
+
+                    <p>
+                   Uso linux por pesada (ahora uso mac, (hipocrita lo sé)) y me gustan los videojuegos pero me he quitado del CSGO por el bien de mi vista.
+                    </p>
+
+                    <p>Sé que tengo mucho texto
+                    para tener tan pocos años, a eso añadele saltos de senioridad bastante gordos, por suerte/desgracia, no miento.</p>
+                    <p>Los años que he trabajado he salido curtida (en contra de mi voluntad) asi que ahora que me quiten lo bailao
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tarjeta "Habilidades Técnicas" -->
+            <div class="card">
+                <h2>/ HABILIDADES TÉCNICAS</h2>
+                <table class="skills-table">
+                    <tr>
+                        <td><strong>Lenguajes:</strong></td>
+                        <td>Python, Go, SQL, Bash/Shell</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ETL & Data Pipelines:</strong></td>
+                        <td>
+                            Diseño de pipelines, limpieza de datos, algoritmos
+                            de matching (Soundex, Jaro-Winkler, Levenshtein)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bases de Datos:</strong></td>
+                        <td>
+                            MySQL, Teradata, Oracle SQL, optimización de queries
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Herramientas:</strong></td>
+                        <td>Git, ArcGIS Pro, Unix/Linux</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Backend (en formación):</strong></td>
+                        <td>Desarrollo de APIs, Pygame, concurrency en Go</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Idiomas:</strong></td>
+                        <td>Español (nativo), Inglés (C1), Italiano (B2)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Tarjeta "Experiencia Laboral" -->
+            <div class="card">
+                <h2>/ EXPERIENCIA RECIENTE</h2>
+                <div class="experience-item">
+                    <div class="job-header">
+                        <span>Data Engineer</span>
+                        <span class="company">Logicalis</span>
+                    </div>
+                    <div class="date">Dic 2023 — Actualidad</div>
+                    <ul class="achievements">
+                        <li>
+                            <strong>Proyecto Único (Vodafone España):</strong>
+                            Ingeniero Jefe de datos en proyecto de gobernanza
+                            para el Gobierno de España.
+                        </li>
+                        <li>
+                            <strong>Aseguramiento de Calidad de Datos:</strong>
+                            Análisis geoespacial y algoritmos (Fuzzy matching,
+                            Soundex, Jaro-Winkler, Levenshtein).
+                        </li>
+                        <li>
+                            <strong>AMA Insurance:</strong> Creación de
+                            secuencias complejas en DataStage para preparar
+                            datasets destinados a redes neuronales de detección
+                            de fraude.
+                        </li>
+                    </ul>
+                    <div class="badge-grid">
+                        <span class="badge">Python</span>
+                        <span class="badge">SQL</span>
+                        <span class="badge">DataStage</span>
+                        <span class="badge">ArcGIS Pro</span>
+                        <span class="badge">Linux</span>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="job-header">
+                        <span>Junior Developer</span>
+                        <span class="company">NTT DATA</span>
+                    </div>
+                    <div class="date">Dic 2022 — Ene 2024 (Milán)</div>
+                    <ul class="achievements">
+                        <li>
+                            Mantenimiento de un <strong>Data Lake</strong> en
+                            Teradata y desarrollo de jobs en DataStage para
+                            procesar datos críticos.
+                        </li>
+                        <li>
+                            Automatización de tareas con scripts en Bash,
+                            ahorrando <strong>10 horas/semana</strong> al equipo
+                            de operaciones.
+                        </li>
+                        <li>
+                            Formación de nuevos colegas (hasta 14 personas) en
+                            procesos técnicos y Knowledge Transfer.
+                        </li>
+                        <li>
+                            Soporte on-call para resolución de incidencias en
+                            sistemas de producción.
+                        </li>
+                    </ul>
+                    <div class="badge-grid">
+                        <span class="badge">Teradata</span>
+                        <span class="badge">Oracle SQL</span>
+                        <span class="badge">Bash</span>
+                        <span class="badge">Autosys</span>
+                        <span class="badge">DataStage</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta "Formación" -->
+            <div class="card">
+                <h2>/ EDUCACIÓN Y LOGROS</h2>
+                <div class="experience-item">
+                    <div class="job-header">
+                        <span>Máster en Desarrollo Backend</span>
+                        <span class="company">boot.dev</span>
+                    </div>
+                    <div class="date">2025 — On going</div>
+                    <ul class="achievements">
+                        <li>
+                            Enfoque en <strong>Python y Go</strong>, con
+                            proyectos prácticos en desarrollo de videojuegos
+                            (Pygame) y APIs, LLMs.
+                        </li>
+                        <li>
+                            Aplicación de patrones de diseño (Observer, Factory)
+                            y manejo de estados en sistemas backend.
+                        </li>
+                    </ul>
+                    <div class="badge-grid">
+                        <span class="badge">Python</span>
+                        <span class="badge">Go</span>
+                        <span class="badge">Pygame</span>
+                        <span class="badge">Backend</span>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="job-header">
+                        <span
+                            >Formación Profesional Superior en Desarollo
+                            Multiplataforma</span
+                        >
+                        <span class="company">IES FRANCISCO AYALA</span>
+                    </div>
+                    <div class="date">2020 — 2022</div>
+                    <ul class="achievements">
+                        <li>
+                            Enfoque en <strong>Andorid y Java</strong>, con
+                            proyectos prácticos como desarolo de juegos y desarollo de aplicaciones android completas
+                        </li>
+                        <li>
+
+                        </li>
+                    </ul>
+                    <div class="badge-grid">
+                        <span class="badge">Acceso a Datos (Hibernate,JDBC,Oracle)</span>
+                        <span class="badge">Java</span>
+                        <span class="badge">Kotlin</span>
+                        <span class="badge">Swift</span>
+                        <span class="badge">Flutter</span>
+                        <span class="badge">Python</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta "Proyectos Personales" -->
+            <div class="card">
+                <h2>/ PROYECTOS PERSONALES (en construccion)</h2>
+                <div class="experience-item">
+                    <div class="job-header">
+                        <span>Motor de juego en Python con Pygame</span>
+                        <span class="date">2026</span>
+                    </div>
+                    <ul class="achievements">
+                        <li>
+                            Desarrollo de un videojuego 2D aplicando patrones de
+                            diseño (Observer, Factory) y lógica de backend.
+                        </li>
+                        <li>
+                            Código disponible en
+                            <a href="https://github.com/tuusuario" class="link"
+                                >GitHub</a
+                            >.
+                        </li>
+                    </ul>
+                    <div class="badge-grid">
+                        <span class="badge">Python</span>
+                        <span class="badge">Pygame</span>
+                        <span class="badge">OOP</span>
+                    </div>
+                </div>
+                <!-- TFG ---->
+                 <h3>Proyectos de la formacion</h3>
+                <div class="experience-item">
+                    <div class="job-header">
+                        <span>TFG, Aplicacion de gestion de ambulatorio medico con consulta de sintomologia</span>
+                        <span class="date">2022</span>
+                    </div>
+                    <ul class="achievements">
+                        <li>
+                           Desarollo de aplicacion en Android como TFG final de mi formacion profesional, con un 9 de nota.
+                        </li>
+                        <li>
+                            Código disponible en
+                            <a href="https://github.com/tuusuario" class="link"
+                                >GitHub</a
+                            >.
+                        </li>
+                    </ul>
+                    <div class="badge-grid">
+
+                        <span class="badge">Nota: 9</span>
+
+                    </div>
+
             </div>
         </div>
 
-        <!-- Tarjeta "Habilidades Técnicas" -->
-        <div class="card">
-            <h2>/ HABILIDADES TÉCNICAS</h2>
-            <table class="skills-table">
-                <tr>
-                    <td><strong>Lenguajes:</strong></td>
-                    <td>Python, Go, SQL, Bash/Shell</td>
-                </tr>
-                <tr>
-                    <td><strong>ETL & Data Pipelines:</strong></td>
-                    <td>Diseño de pipelines, limpieza de datos, algoritmos de matching (Soundex, Jaro-Winkler, Levenshtein)</td>
-                </tr>
-                <tr>
-                    <td><strong>Bases de Datos:</strong></td>
-                    <td>MySQL, Teradata, Oracle SQL, optimización de queries</td>
-                </tr>
-                <tr>
-                    <td><strong>Herramientas:</strong></td>
-                    <td>Git, ArcGIS Pro, Unix/Linux</td>
-                </tr>
-                <tr>
-                    <td><strong>Backend (en formación):</strong></td>
-                    <td>Desarrollo de APIs, Pygame, concurrency en Go</td>
-                </tr>
-                <tr>
-                    <td><strong>Idiomas:</strong></td>
-                    <td>Español (nativo), Inglés (C1), Italiano (B2)</td>
-                </tr>
-            </table>
-        </div>
-
-        <!-- Tarjeta "Experiencia Laboral" -->
-        <div class="card">
-            <h2>/ EXPERIENCIA RECIENTE</h2>
-            <div class="experience-item">
-                <div class="job-header">
-                    <span>Data Engineer</span>
-                    <span class="company">Logicalis</span>
-                </div>
-                <div class="date">Dic 2023 — Actualidad</div>
-                <ul class="achievements">
-                    <li><strong>Proyecto Único (Vodafone España):</strong> Ingeniero Jefe de datos en proyecto de gobernanza para el Gobierno de España.</li>
-                    <li><strong>Aseguramiento de Calidad de Datos:</strong> Análisis geoespacial y algoritmos (Fuzzy matching, Soundex, Jaro-Winkler, Levenshtein).</li>
-                    <li><strong>AMA Insurance:</strong> Creación de secuencias complejas en DataStage para preparar datasets destinados a redes neuronales de detección de fraude.</li>
-                </ul>
-                <div class="badge-grid">
-                    <span class="badge">Python</span>
-                    <span class="badge">SQL</span>
-                    <span class="badge">DataStage</span>
-                    <span class="badge">ArcGIS Pro</span>
-                    <span class="badge">Linux</span>
-                </div>
-            </div>
-            <div class="experience-item">
-                <div class="job-header">
-                    <span>Junior Developer</span>
-                    <span class="company">NTT DATA</span>
-                </div>
-                <div class="date">Dic 2022 — Ene 2024 (Milán)</div>
-                <ul class="achievements">
-                    <li>Mantenimiento de un <strong>Data Lake</strong> en Teradata y desarrollo de jobs en DataStage para procesar datos críticos.</li>
-                    <li>Automatización de tareas con scripts en Bash, ahorrando <strong>10 horas/semana</strong> al equipo de operaciones.</li>
-                    <li>Formación de nuevos colegas (hasta 14 personas) en procesos técnicos y Knowledge Transfer.</li>
-                    <li>Soporte on-call para resolución de incidencias en sistemas de producción.</li>
-                </ul>
-                <div class="badge-grid">
-                    <span class="badge">Teradata</span>
-                    <span class="badge">Oracle SQL</span>
-                    <span class="badge">Bash</span>
-                    <span class="badge">Autosys</span>
-                    <span class="badge">DataStage</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tarjeta "Formación" -->
-        <div class="card">
-            <h2>/ EDUCACIÓN Y LOGROS</h2>
-            <div class="experience-item">
-                <div class="job-header">
-                    <span>Máster en Desarrollo Backend</span>
-                    <span class="company">boot.dev</span>
-                </div>
-                <div class="date">2025 — On going</div>
-                <ul class="achievements">
-                    <li>Enfoque en <strong>Python y Go</strong>, con proyectos prácticos en desarrollo de videojuegos (Pygame) y APIs, LLMs.</li>
-                    <li>Aplicación de patrones de diseño (Observer, Factory) y manejo de estados en sistemas backend.</li>
-                </ul>
-                <div class="badge-grid">
-                    <span class="badge">Python</span>
-                    <span class="badge">Go</span>
-                    <span class="badge">Pygame</span>
-                    <span class="badge">Backend</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tarjeta "Proyectos Personales" -->
-        <div class="card">
-            <h2>/ PROYECTOS PERSONALES (en construccion)</h2>
-            <div class="experience-item">
-                <div class="job-header">
-                    <span>Motor de juego en Python con Pygame</span>
-                    <span class="date">2026</span>
-                </div>
-                <ul class="achievements">
-                    <li>Desarrollo de un videojuego 2D aplicando patrones de diseño (Observer, Factory) y lógica de backend.</li>
-                    <li>Código disponible en <a href="https://github.com/tuusuario" class="link">GitHub</a>.</li>
-                </ul>
-                <div class="badge-grid">
-                    <span class="badge">Python</span>
-                    <span class="badge">Pygame</span>
-                    <span class="badge">OOP</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Enlace al archivo JS externo -->
-    <script src="script.js"></script>
-</body>
+        <!-- Enlace al archivo JS externo -->
+        <script src="script.js"></script>
+    </body>
 </html>
