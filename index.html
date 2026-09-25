@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>CV - María de los Dolores Adamuz Barranco</title>
-        <link rel="stylesheet" href="styles.css?v=3" />
+        <link rel="stylesheet" href="styles.css?v=5" />
     </head>
     <body>
         <div class="container">
@@ -305,51 +305,75 @@
                 </div>
             </div>
 
-            <!-- Personal projects -->
-            <div class="card">
-                <h2>/ PERSONAL PROJECTS (in progress)</h2>
-                <div class="experience-item">
-                    <div class="job-header">
-                        <span>Python game engine built on Pygame</span>
-                        <span class="date">2026</span>
-                    </div>
-                    <ul class="achievements">
-                        <li>
-                            2D video game applying design patterns (Observer, Factory) and backend logic.
-                        </li>
-                        <li>
-                            Code available on
-                            <a href="https://github.com/turingtested4/pythonpewpew" class="link" target="_blank" rel="noopener">GitHub</a>.
-                        </li>
-                    </ul>
-                    <div class="badge-grid">
-                        <span class="badge">Python</span>
-                        <span class="badge">Pygame</span>
-                        <span class="badge">OOP</span>
-                    </div>
+            <!-- Personal projects teaser: magic hat -->
+            <div class="card projects-teaser">
+        <!-- bunny hiding inside -->
+                        <svg class="bunny" id="bunny" viewBox="0 0 70 120" aria-hidden="true">
+                            <!-- tail -->
+                            <circle cx="57" cy="100" r="8" fill="#fff" stroke="#000" stroke-width="3"/>
+                            <!-- ears -->
+                            <ellipse cx="24" cy="22" rx="8" ry="21" fill="#fff" stroke="#000" stroke-width="3" transform="rotate(-10 24 22)"/>
+                            <ellipse cx="24" cy="24" rx="3.5" ry="13" fill="#ffb3c1" transform="rotate(-10 24 24)"/>
+                            <ellipse cx="46" cy="22" rx="8" ry="21" fill="#fff" stroke="#000" stroke-width="3" transform="rotate(10 46 22)"/>
+                            <ellipse cx="46" cy="24" rx="3.5" ry="13" fill="#ffb3c1" transform="rotate(10 46 24)"/>
+                            <!-- body -->
+                            <ellipse cx="35" cy="93" rx="23" ry="22" fill="#fff" stroke="#000" stroke-width="3"/>
+                            <ellipse cx="35" cy="97" rx="12" ry="13" fill="#f1f1f1"/>
+                            <!-- feet -->
+                            <ellipse cx="22" cy="113" rx="11" ry="5.5" fill="#fff" stroke="#000" stroke-width="3"/>
+                            <ellipse cx="48" cy="113" rx="11" ry="5.5" fill="#fff" stroke="#000" stroke-width="3"/>
+                            <!-- head -->
+                            <ellipse cx="35" cy="56" rx="24" ry="21" fill="#fff" stroke="#000" stroke-width="3"/>
+                            <circle cx="27" cy="52" r="3.2" fill="#000"/>
+                            <circle cx="43" cy="52" r="3.2" fill="#000"/>
+                            <circle cx="28" cy="51" r="1" fill="#fff"/>
+                            <circle cx="44" cy="51" r="1" fill="#fff"/>
+                            <ellipse cx="35" cy="60" rx="3.5" ry="2.5" fill="#ff4e2e"/>
+                            <path d="M35 62.5 Q31 67 28 64 M35 62.5 Q39 67 42 64" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+                            <ellipse cx="19" cy="61" rx="4" ry="2.5" fill="#ffb3c1" opacity=".8"/>
+                            <ellipse cx="51" cy="61" rx="4" ry="2.5" fill="#ffb3c1" opacity=".8"/>
+                            <!-- front paws -->
+                            <ellipse cx="27" cy="84" rx="6" ry="5" fill="#fff" stroke="#000" stroke-width="3"/>
+                            <ellipse cx="43" cy="84" rx="6" ry="5" fill="#fff" stroke="#000" stroke-width="3"/>
+                        </svg>
+                <span class="thrown" id="throwBtn"><span class="mini"></span></span>
+                <span class="thrown" id="throwWord"><span class="mini"></span></span>
+                <div class="teaser-text">
+                    <h2>/ PERSONAL PROJECTS</h2>
+                    <p>A transport <span class="hit-word" id="hitWord">heat map</span>, an AI coding agent, a Pygame engine and more, dealt out as cards you can flip.</p>
+                    <button class="btn btn-primary hat-target" id="seeBtn" data-goto="projects">SEE MY PROJECTS →</button>
                 </div>
 
-                <h3>Training projects</h3>
-                <div class="experience-item">
-                    <div class="job-header">
-                        <span>Final project: outpatient clinic management app with symptom lookup</span>
-                        <span class="date">2022</span>
-                    </div>
-                    <ul class="achievements">
-                        <li>
-                            Android application developed as the final project of my vocational
-                            degree, graded 9/10.
-                        </li>
-                        <li>
-                            Code available on
-                            <a href="https://github.com/turingtested4" class="link" target="_blank" rel="noopener">GitHub</a>.
-                        </li>
-                    </ul>
-                    <div class="badge-grid">
-                        <span class="badge">Android</span>
-                        <span class="badge">Grade: 9/10</span>
-                    </div>
-                </div>
+                <button class="magic" data-goto="projects" aria-label="See my projects">
+
+                    <span class="back-wrap"><!-- back rim: the dark opening of the hat -->
+                    <svg class="hat-back" viewBox="0 0 120 30" aria-hidden="true">
+                        <ellipse cx="60" cy="15" rx="56" ry="12" fill="#fff" stroke="#000" stroke-width="3"/>
+                        <ellipse cx="60" cy="15" rx="42" ry="7" fill="#222"/>
+                    </svg></span>
+                    <span class="hat-wrap">
+
+                        <!-- hat body + front half of the rim (covers the bunny) -->
+                        <svg class="hat-front" viewBox="0 0 120 110" aria-hidden="true" style="filter: drop-shadow(4px 4px 0 #000)">
+                            <path d="M18 15 L26 102 Q60 110 94 102 L102 15" fill="#1b1b1b" stroke="#000" stroke-width="3" stroke-linejoin="round"/>
+                            <path d="M22 50 Q60 58 98 50 L96 68 Q60 76 24 68 Z" fill="#ff4e2e" stroke="#000" stroke-width="3" stroke-linejoin="round"/>
+                            <path d="M4 15 Q60 36 116 15" fill="none" stroke="#000" stroke-width="3"/>
+                            <path d="M4 15 Q60 32 116 15 Q60 27 4 15 Z" fill="#1b1b1b"/>
+                            <path d="M34 26 L38 92" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".25"/>
+                        </svg>
+                    </span>
+
+                    <!-- starburst sticker -->
+                    <span class="burst"><span>CLICK<br>ME!</span></span>
+
+                    <!-- cards that burst out on hover -->
+                    <span class="drop" style="--k:0; --dx:-110px; --up:-70px;  --rot:-160deg"><span class="mini"></span></span>
+                    <span class="drop" style="--k:1; --dx:95px;   --up:-90px;  --rot:200deg"><span class="mini"></span></span>
+                    <span class="drop" style="--k:2; --dx:-70px;  --up:-110px; --rot:95deg"><span class="mini"></span></span>
+                    <span class="drop" style="--k:3; --dx:60px;   --up:-60px;  --rot:-110deg"><span class="mini"></span></span>
+                    <span class="drop" style="--k:4; --dx:-100px; --up:-95px;  --rot:260deg"><span class="mini"></span></span>
+                    <span class="drop" style="--k:5; --dx:112px;  --up:-75px;  --rot:-80deg"><span class="mini"></span></span>
+                </button>
             </div>
             </div>
             <!-- end CV view -->
@@ -482,6 +506,6 @@
             <p class="modal-links"><a class="btn btn-primary" href="https://github.com/turingtested4/my_agent" target="_blank" rel="noopener">VIEW CODE</a></p>
         </template>
 
-        <script src="script.js?v=3"></script>
+        <script src="script.js?v=5"></script>
     </body>
 </html>

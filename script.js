@@ -12,113 +12,144 @@ function toggleSincere() {
 }
 
 /**
- * 📌 PING-PONG GAME BEHIND THE TITLE
- * - Canvas with orange paddles and a ball in the primary colour.
- * - Slow speed and light style so it doesn't distract.
+ * 📌 PING-PONG GAME BEHIND THE TITLE (real Pong rules)
+ * - The ball bounces off the paddles; where it hits the paddle sets the new angle.
+ * - Paddles chase the ball with a max speed and a small aiming error, so rallies
+ *   speed up until someone misses. A faint score sits by the net.
  */
 document.addEventListener("DOMContentLoaded", function () {
   const canvas = document.getElementById("pongCanvas");
   const ctx = canvas.getContext("2d");
+  const card = document.querySelector(".title-card");
+  const primary = getComputedStyle(document.documentElement).getPropertyValue("--primary").trim();
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // Primary colour from the CSS for the ball
-  const root = document.documentElement;
-  const primaryColor = getComputedStyle(root).getPropertyValue("--primary").trim();
+  const PADDLE_W = 8, PADDLE_H = 34, MARGIN = 12, R = 5;
+  const START_SPEED = 3.2, MAX_SPEED = 6, PADDLE_SPEED = 2.8;
+  let W, H;
+  const left = { y: 0, err: 0, flash: 0, score: 0 };
+  const right = { y: 0, err: 0, flash: 0, score: 0 };
+  const ball = { x: 0, y: 0, dx: 0, dy: 0, trail: [] };
+  let pause = 0, last = performance.now();
 
-  // Game settings
-  const paddleHeight = 15;
-  const paddleWidth = 10;
-  const ballRadius = 5;
-  let x = 20;
-  let y = 50;
-  let dx = 1.2; // horizontal speed
-  let dy = -1.2; // vertical speed
-  let leftPaddleY = 0;
-  let rightPaddleY = 0;
-
-  // Match the canvas to the card size so nothing looks stretched
-  function resizeCanvas() {
-    const card = document.querySelector(".title-card");
-    canvas.width = card.clientWidth;
-    canvas.height = card.clientHeight;
-    y = Math.min(Math.max(y, ballRadius), canvas.height - ballRadius);
-    leftPaddleY = Math.min(leftPaddleY, canvas.height - paddleHeight);
-    rightPaddleY = Math.min(rightPaddleY, canvas.height - paddleHeight);
+  function resize() {
+    W = canvas.width = card.clientWidth;
+    H = canvas.height = card.clientHeight;
+    left.y = right.y = H / 2 - PADDLE_H / 2;
   }
 
-  function drawBackground() {
-    ctx.fillStyle = "#f9f9f9";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  function serve(dir) {
+    ball.x = W / 2; ball.y = H / 2; ball.trail = [];
+    const angle = (Math.random() * 0.8 - 0.4);           // up to ~23° up or down
+    ball.dx = dir * START_SPEED * Math.cos(angle);
+    ball.dy = START_SPEED * Math.sin(angle);
+    left.err = right.err = 0;
+    pause = 45;                                            // short breath before the serve
   }
 
-  // Orange paddles
-  function drawPaddles() {
-    ctx.fillStyle = "#ff8c00";
-    ctx.fillRect(10, leftPaddleY, paddleWidth, paddleHeight);
-    ctx.fillRect(canvas.width - 10 - paddleWidth, rightPaddleY, paddleWidth, paddleHeight);
+  // where the paddle "wants" to be, with a small aiming error so it can miss
+  function aim(p) { p.err = (Math.random() - 0.5) * PADDLE_H * 1.7; }
+
+  function movePaddle(p, comingAtMe, dt) {
+    const target = comingAtMe ? ball.y + p.err - PADDLE_H / 2 : H / 2 - PADDLE_H / 2;
+    const diff = target - p.y;
+    const step = Math.min(Math.abs(diff), PADDLE_SPEED * dt * (comingAtMe ? 1 : 0.5));
+    p.y += Math.sign(diff) * step;
+    p.y = Math.max(0, Math.min(H - PADDLE_H, p.y));
+    if (p.flash > 0) p.flash -= dt;
   }
 
-  // Ball in the primary colour
-  function drawBall() {
-    ctx.beginPath();
-    ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-    ctx.fillStyle = primaryColor;
-    ctx.fill();
-    ctx.closePath();
+  // bounce off a paddle: the further from its centre, the steeper the angle
+  function hit(p, dir) {
+    const rel = (ball.y - (p.y + PADDLE_H / 2)) / (PADDLE_H / 2); // -1 … 1
+    const speed = Math.min(Math.hypot(ball.dx, ball.dy) * 1.08, MAX_SPEED);
+    const angle = rel * 1.0;                                      // up to ~57°
+    ball.dx = dir * speed * Math.cos(angle);
+    ball.dy = speed * Math.sin(angle);
+    p.flash = 8;
   }
 
-  // Net (light grey dashed line)
-  function drawNet() {
-    ctx.strokeStyle = "#cccccc";
-    ctx.setLineDash([5, 3]);
-    ctx.beginPath();
-    ctx.moveTo(canvas.width / 2, 0);
-    ctx.lineTo(canvas.width / 2, canvas.height);
-    ctx.stroke();
-    ctx.setLineDash([]);
-  }
+  function update(dt) {
+    if (pause > 0) { pause -= dt; movePaddle(left, false, dt); movePaddle(right, false, dt); return; }
 
-  function collisionDetection() {
-    if (x - ballRadius < 20 && y > leftPaddleY && y < leftPaddleY + paddleHeight) dx = -dx;
-    if (x + ballRadius > canvas.width - 20 && y > rightPaddleY && y < rightPaddleY + paddleHeight) dx = -dx;
-    if (y - ballRadius < 0 || y + ballRadius > canvas.height) dy = -dy;
-    if (x - ballRadius < 0 || x + ballRadius > canvas.width) {
-      x = 20;
-      y = canvas.height / 2;
+    const wasGoingRight = ball.dx > 0;
+    ball.x += ball.dx * dt;
+    ball.y += ball.dy * dt;
+    ball.trail.push({ x: ball.x, y: ball.y });
+    if (ball.trail.length > 8) ball.trail.shift();
+
+    // top / bottom walls
+    if (ball.y < R) { ball.y = R; ball.dy = Math.abs(ball.dy); }
+    if (ball.y > H - R) { ball.y = H - R; ball.dy = -Math.abs(ball.dy); }
+
+    // paddles
+    const lx = MARGIN + PADDLE_W, rx = W - MARGIN - PADDLE_W;
+    if (ball.dx < 0 && ball.x - R <= lx && ball.x - R > MARGIN - 4 &&
+        ball.y > left.y - R && ball.y < left.y + PADDLE_H + R) {
+      ball.x = lx + R; hit(left, 1);
     }
-  }
+    if (ball.dx > 0 && ball.x + R >= rx && ball.x + R < W - MARGIN + 4 &&
+        ball.y > right.y - R && ball.y < right.y + PADDLE_H + R) {
+      ball.x = rx - R; hit(right, -1);
+    }
 
-  // Paddles follow the ball automatically
-  function movePaddles() {
-    const leftPaddleCenter = leftPaddleY + paddleHeight / 2;
-    const rightPaddleCenter = rightPaddleY + paddleHeight / 2;
+    // new aiming error each time the ball changes direction
+    if (ball.dx > 0 !== wasGoingRight) aim(ball.dx > 0 ? right : left);
 
-    if (leftPaddleCenter < y - 5) leftPaddleY += 0.8;
-    else if (leftPaddleCenter > y + 5) leftPaddleY -= 0.8;
+    // point scored
+    if (ball.x < -R * 2) { right.score++; serve(1); }
+    if (ball.x > W + R * 2) { left.score++; serve(-1); }
 
-    if (rightPaddleCenter < y - 5) rightPaddleY += 0.8;
-    else if (rightPaddleCenter > y + 5) rightPaddleY -= 0.8;
+    movePaddle(left, ball.dx < 0, dt);
+    movePaddle(right, ball.dx > 0, dt);
   }
 
   function draw() {
-    drawBackground();
-    drawNet();
-    drawPaddles();
-    drawBall();
+    ctx.fillStyle = "#f9f9f9";
+    ctx.fillRect(0, 0, W, H);
 
-    x += dx;
-    y += dy;
+    // net
+    ctx.strokeStyle = "#cccccc";
+    ctx.setLineDash([5, 3]);
+    ctx.beginPath(); ctx.moveTo(W / 2, 0); ctx.lineTo(W / 2, H); ctx.stroke();
+    ctx.setLineDash([]);
 
-    collisionDetection();
-    movePaddles();
+    // faint score by the net
+    ctx.fillStyle = "#e2e2e2";
+    ctx.font = "900 22px 'Segoe UI', sans-serif";
+    ctx.textAlign = "right"; ctx.fillText(left.score, W / 2 - 14, 26);
+    ctx.textAlign = "left"; ctx.fillText(right.score, W / 2 + 14, 26);
 
-    requestAnimationFrame(draw);
+    // paddles (flash darker when they hit)
+    [[left, MARGIN], [right, W - MARGIN - PADDLE_W]].forEach(([p, x]) => {
+      ctx.fillStyle = p.flash > 0 ? "#e06800" : "#ff8c00";
+      ctx.fillRect(x, p.y, PADDLE_W, PADDLE_H);
+    });
+
+    // ball + little motion trail
+    ball.trail.forEach((t, i) => {
+      ctx.globalAlpha = (i + 1) / ball.trail.length * 0.25;
+      ctx.beginPath(); ctx.arc(t.x, t.y, R * 0.8, 0, Math.PI * 2);
+      ctx.fillStyle = primary; ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    ctx.beginPath(); ctx.arc(ball.x, ball.y, R, 0, Math.PI * 2);
+    ctx.fillStyle = primary; ctx.fill();
   }
 
-  resizeCanvas();
-  y = canvas.height / 2;
-  leftPaddleY = rightPaddleY = canvas.height / 2 - paddleHeight / 2;
-  window.addEventListener("resize", resizeCanvas);
-  draw();
+  function loop(now) {
+    const dt = Math.min((now - last) / 16.67, 3);          // same speed on 60 Hz and 120 Hz screens
+    last = now;
+    update(dt);
+    draw();
+    requestAnimationFrame(loop);
+  }
+
+  resize();
+  serve(Math.random() < 0.5 ? -1 : 1);
+  window.addEventListener("resize", resize);
+  if (reduce) { pause = 0; draw(); return; }                // static court for reduced motion
+  requestAnimationFrame(loop);
 });
 
 /**
@@ -249,3 +280,104 @@ function heatMap(canvas, spots) {
   frame();
   return () => cancelAnimationFrame(raf);
 }
+
+/**
+ * 📌 "SEE MY PROJECTS" (button and hat): jumps to the Projects tab
+ */
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("[data-goto]").forEach((b) =>
+    b.addEventListener("click", () => {
+      document.querySelector('.tab[data-view="' + b.dataset.goto + '"]').click();
+      window.scrollTo({ top: document.querySelector(".tabs").offsetTop - 10, behavior: "smooth" });
+    }),
+  );
+});
+
+
+/**
+ * 📌 MAGIC HAT: bunny peeks out, cards spill, two of them hit the button and a word
+ */
+document.addEventListener("DOMContentLoaded", function () {
+  const teaser = document.querySelector(".projects-teaser");
+  const magic = teaser.querySelector(".magic");
+  const bunny = document.getElementById("bunny");
+  const btn = document.getElementById("seeBtn");
+  const word = document.getElementById("hitWord");
+  const cardBtn = document.getElementById("throwBtn");
+  const cardWord = document.getElementById("throwWord");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let running = false, resetTimer = null, anims = [];
+
+  function rel(el) {
+    const a = el.getBoundingClientRect(), t = teaser.getBoundingClientRect();
+    return { x: a.left - t.left, y: a.top - t.top, w: a.width, h: a.height };
+  }
+
+  // throw one card from the hat to a target, then bounce off and fall
+  function throwCard(card, target, delay, spin, onHit) {
+    const hat = rel(magic.querySelector(".hat-back"));
+    const t = rel(target);
+    const cw = 34, ch = 48;
+    const sx = hat.x + hat.w / 2 - cw / 2, sy = hat.y - 10;
+    const tx = t.x + t.w * 0.75 - cw / 2, ty = t.y + t.h / 2 - ch / 2;
+    const mx = (sx + tx) / 2, my = Math.min(sy, ty) - 90;
+    const fly = card.animate([
+      { transform: `translate(${sx}px, ${sy}px) rotate(0) scale(.6)`, opacity: 1 },
+      { transform: `translate(${mx}px, ${my}px) rotate(${spin / 2}deg) scale(1)`, opacity: 1, easing: "ease-in" },
+      { transform: `translate(${tx}px, ${ty}px) rotate(${spin}deg) scale(1)`, opacity: 1 },
+    ], { duration: 750, delay, easing: "ease-out", fill: "both" });
+    anims.push(fly);
+    return fly.finished.then(() => {
+      onHit();
+      const fall = card.animate([
+        { transform: `translate(${tx}px, ${ty}px) rotate(${spin}deg)`, opacity: 1 },
+        { transform: `translate(${tx + 25}px, ${ty - 25}px) rotate(${spin + 60}deg)`, opacity: 1, easing: "ease-in" },
+        { transform: `translate(${tx + 45}px, ${ty + 140}px) rotate(${spin + 200}deg)`, opacity: 0 },
+      ], { duration: 900, fill: "forwards" });
+      anims.push(fall);
+    });
+  }
+
+  function play() {
+    if (running) return;
+    running = true;
+    clearTimeout(resetTimer);
+    magic.classList.add("trick");
+
+    // bunny peeks out and ducks back in
+    const hat = rel(magic.querySelector(".hat-back"));
+    const bx = hat.x + hat.w / 2 - 32, by = hat.y + 2;
+    bunny.style.opacity = 1;
+    const peek = bunny.animate([
+      { transform: `translate(${bx}px, ${by}px)` },
+      { transform: `translate(${bx}px, ${by - 62}px) rotate(-5deg)`, offset: 0.25 },
+      { transform: `translate(${bx}px, ${by - 56}px) rotate(4deg)`, offset: 0.4 },
+      { transform: `translate(${bx}px, ${by - 60}px) rotate(0)`, offset: 0.7 },
+      { transform: `translate(${bx}px, ${by}px)` },
+    ], { duration: reduce ? 1 : 1600, delay: 100, easing: "ease-in-out", fill: "both" });
+    anims.push(peek);
+    peek.finished.then(() => { bunny.style.opacity = 0; }).catch(() => {});
+
+    if (reduce) return;
+    // two cards go rogue
+    throwCard(cardBtn, btn, 350, -380, () => {
+      btn.classList.remove("hit"); void btn.offsetWidth; btn.classList.add("hit");
+    }).catch(() => {});
+    throwCard(cardWord, word, 600, 420, () => word.classList.add("knocked")).catch(() => {});
+  }
+
+  function reset() {
+    anims.forEach((a) => a.cancel());
+    anims = [];
+    [bunny, cardBtn, cardWord].forEach((el) => { el.style.opacity = 0; });
+    btn.classList.remove("hit");
+    word.classList.remove("knocked");
+    magic.classList.remove("trick");
+    running = false;
+  }
+
+  magic.addEventListener("mouseenter", play);
+  magic.addEventListener("focus", play);
+  teaser.addEventListener("mouseleave", () => { resetTimer = setTimeout(reset, 1500); });
+  teaser.addEventListener("mouseenter", () => clearTimeout(resetTimer));
+});

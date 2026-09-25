@@ -542,3 +542,177 @@ h3 {
 @media (prefers-reduced-motion: reduce) {
     .pcard, .modal-card, .deck.dealing .pcard { animation: none; transition: none; }
 }
+
+/* ============================================= */
+/* 📌 PERSONAL PROJECTS TEASER: MAGIC HAT */
+/* ============================================= */
+.projects-teaser {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.teaser-text { flex: 1; }
+
+/* small card back (used by the flying cards) */
+.mini {
+    display: block;
+    width: 34px;
+    height: 48px;
+    border: 2px solid var(--border);
+    box-shadow: 2px 2px 0 var(--border);
+    background:
+        linear-gradient(white, white) center / 16px 28px no-repeat,
+        repeating-linear-gradient(45deg, var(--primary) 0 5px, #ff8c00 5px 10px);
+}
+
+/* ============ MAGIC HAT (preview) ============ */
+.magic {
+    --ground: 176px;
+    position: relative;
+    flex: 0 0 260px;
+    width: 260px;
+    height: 200px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+.magic::after { /* the floor */
+    content: "";
+    position: absolute;
+    left: 0; right: 0;
+    top: var(--ground);
+    border-top: 3px dashed #bbb;
+}
+
+/* hat parts: back rim (behind bunny) and front (in front of bunny) */
+.hat-back, .hat-front, .bunny {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.hat-back  { top: 70px; width: 120px; z-index: 1; }
+.bunny     { top: 70px; width: 70px; z-index: 2; transition: transform 0.2s ease-in; }
+.hat-front { top: 70px; width: 120px; z-index: 3; }
+.hat-wrap  { position: absolute; inset: 0; animation: hat-idle 2.4s ease-in-out infinite; transform-origin: 50% 88%; }
+
+@keyframes hat-idle {
+    0%, 100% { transform: rotate(-3deg); }
+    50%      { transform: rotate(3deg); }
+}
+
+/* starburst "CLICK ME!" sticker */
+.burst {
+    position: absolute;
+    left: 50%;
+    top: 104px;
+    width: 76px;
+    height: 76px;
+    margin-left: -8px;
+    z-index: 5;
+    display: grid;
+    place-items: center;
+    animation: burst-pulse 1.2s ease-in-out infinite;
+}
+.burst::before, .burst::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(50% 0%, 59% 13%, 75% 7%, 76% 24%, 93% 25%, 86% 41%, 100% 50%, 86% 59%, 93% 75%, 76% 76%, 75% 93%, 59% 87%, 50% 100%, 41% 87%, 25% 93%, 24% 76%, 7% 75%, 14% 59%, 0% 50%, 14% 41%, 7% 25%, 24% 24%, 25% 7%, 41% 13%);
+}
+.burst::before { background: #000; transform: translate(3px, 3px); }
+.burst::after  { background: #ffd43b; inset: 3px; }
+.burst span {
+    position: relative;
+    z-index: 1;
+    font-weight: 900;
+    font-size: 0.72rem;
+    line-height: 1;
+    text-align: center;
+    color: #000;
+    transform: rotate(-14deg);
+}
+@keyframes burst-pulse {
+    0%, 100% { transform: rotate(-8deg) scale(1); }
+    50%      { transform: rotate(-4deg) scale(1.08); }
+}
+
+/* cards that fly out */
+.drop {
+    position: absolute;
+    left: calc(50% - 17px);
+    top: 60px;
+    z-index: 2;
+    opacity: 0;
+}
+.drop .mini { transform-origin: 50% 50%; }
+
+
+
+
+@keyframes hat-shake {
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(-7deg); }
+    75% { transform: rotate(7deg); }
+}
+@keyframes drop-x {
+    0%   { opacity: 1; transform: translateX(0); }
+    100% { opacity: 1; transform: translateX(var(--dx)); }
+}
+@keyframes drop-y {
+    0%   { transform: translateY(0) rotate(0) scale(.6); animation-timing-function: ease-out; }
+    35%  { transform: translateY(var(--up)) rotate(calc(var(--rot) * .4)) scale(1); animation-timing-function: ease-in; }
+    88%  { transform: translateY(calc(var(--ground) - 110px)) rotate(var(--rot)); }
+    94%  { transform: translateY(calc(var(--ground) - 116px)) rotate(var(--rot)); }
+    100% { transform: translateY(calc(var(--ground) - 110px)) rotate(var(--rot)); }
+}
+/* ===== bunny that leaves the hat ===== */
+.projects-teaser { position: relative; }
+.back-wrap { position: absolute; inset: 0; z-index: 1; animation: hat-idle 2.4s ease-in-out infinite; transform-origin: 50% 88%; }
+.magic.trick .back-wrap { animation: hat-shake 0.3s ease-in-out 2; }
+.magic .hat-wrap { z-index: 3; }
+.bunny {
+    position: absolute !important;
+    left: 0; top: 0;
+    width: 64px !important;
+    z-index: 2 !important;
+    transform: none;
+    transition: none !important;
+    pointer-events: none;
+    opacity: 0;
+}
+.bunny.out { z-index: 6 !important; }
+
+.hat-target { position: relative; overflow: visible; }
+
+.thrown {
+    position: absolute;
+    left: 0; top: 0;
+    z-index: 8;
+    opacity: 0;
+    pointer-events: none;
+}
+.hit-word { display: inline-block; transition: transform 0.25s cubic-bezier(.3,1.8,.5,1); transform-origin: 30% 80%; }
+.hit-word.knocked { transform: rotate(-9deg) translateY(3px); color: var(--primary); font-weight: 900; }
+.hat-target.hit { animation: btn-hit 0.45s ease-out; }
+@keyframes btn-hit {
+    0%   { transform: translate(0, 0) rotate(0); }
+    20%  { transform: translate(-6px, 2px) rotate(-5deg); }
+    45%  { transform: translate(4px, -1px) rotate(3deg); }
+    70%  { transform: translate(-2px, 0) rotate(-1deg); }
+    100% { transform: translate(0, 0) rotate(0); }
+}
+/* the drop/shake now run from a class set by JS (so the trick survives moving the mouse) */
+.magic.trick .hat-wrap { animation: hat-shake 0.3s ease-in-out 2; }
+.magic.trick .drop { animation: drop-x 1s linear forwards; animation-delay: calc(0.25s + var(--k) * 0.07s); }
+.magic.trick .drop .mini { animation: drop-y 1s forwards; animation-delay: inherit; }
+.magic.trick .burst { animation: burst-pulse 0.4s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+    .hat-wrap, .burst, .magic:hover .hat-wrap { animation: none; }
+}
+
+@media (max-width: 700px) {
+    .projects-teaser { flex-direction: column; align-items: stretch; }
+    .magic { align-self: center; }
+}
