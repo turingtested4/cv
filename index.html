@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>CV - María de los Dolores Adamuz Barranco</title>
-        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="styles.css?v=3" />
     </head>
     <body>
         <div class="container">
@@ -13,7 +13,7 @@
                 <div class="logo">MARIA <span>CV</span></div>
                 <div>
                     <a href="https://github.com/turingtested4" class="btn-nav" target="_blank" rel="noopener">GITHUB</a>
-                    <a href="mariadolorespersonal@gmail.com" class="btn-nav email">EMAIL</a>
+                    <a href="mailto:mariadolorespersonal@gmail.com" class="btn-nav email">EMAIL</a>
                 </div>
             </nav>
 
@@ -387,6 +387,12 @@
                         <span class="pcard-title">Data Pipeline</span>
                         <span class="pcard-sub">Coming 2027</span>
                     </button>
+                    <button class="pcard" data-project="agent" style="--i:4">
+                        <span class="pcard-tag tag-ai">AI AGENT</span>
+                        <span class="pcard-icon">🤖</span>
+                        <span class="pcard-title">AI Coding Agent</span>
+                        <span class="pcard-sub">my_agent · in progress</span>
+                    </button>
                 </div>
             </div>
 
@@ -458,6 +464,24 @@
             </div>
         </template>
 
-        <script src="script.js"></script>
+        <template id="tpl-agent">
+            <span class="pcard-tag tag-ai">AI AGENT</span>
+            <h3 id="modalTitle" class="modal-title">AI Coding Agent (in progress)</h3>
+            <ul class="achievements">
+                <li><strong>What:</strong> a command-line coding agent. You ask it something in plain English and the LLM decides which tools to call to explore and change a codebase.</li>
+                <li><strong>How:</strong> Python + OpenAI SDK through OpenRouter, using function calling with JSON tool schemas. Four tools: list files, read a file, write a file and run a Python file.</li>
+                <li><strong>Safety first:</strong> every tool is sandboxed to a working directory; path checks block anything outside it. Each tool has its own tests, run against a small calculator project.</li>
+                <li><strong>Next:</strong> execute the tool calls in a loop and feed the results back, so the agent can find and fix bugs on its own.</li>
+            </ul>
+            <div class="badge-grid">
+                <span class="badge">Python</span>
+                <span class="badge">LLM tool calling</span>
+                <span class="badge">OpenRouter</span>
+                <span class="badge">uv</span>
+            </div>
+            <p class="modal-links"><a class="btn btn-primary" href="https://github.com/turingtested4/my_agent" target="_blank" rel="noopener">VIEW CODE</a></p>
+        </template>
+
+        <script src="script.js?v=3"></script>
     </body>
 </html>

@@ -344,9 +344,9 @@ h3 {
 }
 
 .pcard {
-    --n: 4;
-    --spread: 150px;
-    --angle: 7deg;
+    --n: 5;
+    --spread: 125px;
+    --angle: 6deg;
     position: absolute;
     left: 50%;
     top: 40px;
@@ -407,6 +407,7 @@ h3 {
 .tag-game { background: #ff8c00; }
 .tag-app { background: #3498db; }
 .tag-soon { background: #888; }
+.tag-ai { background: #000; }
 
 .pcard-icon {
     flex: 1;
