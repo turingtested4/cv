@@ -1,162 +1,232 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>CV - María de los Dolores Adamuz Barranco</title>
-        <!-- Enlace al archivo CSS externo -->
         <link rel="stylesheet" href="styles.css" />
     </head>
     <body>
         <div class="container">
-            <!-- Encabezado con logo y botones -->
+            <!-- Header: logo and buttons -->
             <nav>
                 <div class="logo">MARIA <span>CV</span></div>
                 <div>
-                    <a href="#" class="btn-nav">ENGLISH GB</a>
-                    <a href="mailto:tuemail@example.com" class="btn-nav email"
-                        >EMAIL</a
-                    >
+                    <a href="https://github.com/turingtested4" class="btn-nav" target="_blank" rel="noopener">GITHUB</a>
+                    <a href="mariadoloresperosnal@gmail.com" class="btn-nav email">EMAIL</a>
                 </div>
             </nav>
 
-            <!-- Tarjeta principal: Título y subtítulo con fondo de ping pong -->
+            <!-- Title card with ping-pong background -->
             <div class="card title-card">
                 <canvas id="pongCanvas" width="760" height="100"></canvas>
                 <div class="title-content">
-                    <h1 class="role-title">Backend and Data Engineer</h1>
+                    <h1 class="role-title">Senior Data Engineer</h1>
                     <p class="subtitle">
-                        > Liderando la Calidad de Datos en Logicalis
+                        &gt; Data-estate migration to IBM watsonx.data &amp; Microsoft Fabric at Accenture
                     </p>
                 </div>
             </div>
 
-            <!-- Tarjeta "Sobre mí" -->
+            <!-- Tabs -->
+            <div class="tabs" role="tablist">
+                <button class="tab active" role="tab" data-view="cv" aria-selected="true">/ CV</button>
+                <button class="tab" role="tab" data-view="projects" aria-selected="false">/ PROJECTS <span class="tab-new">NEW</span></button>
+            </div>
+
+            <div class="view" id="view-cv">
+            <!-- About me -->
             <div class="card">
-                <h2>/ SOBRE MÍ</h2>
+                <h2>/ ABOUT ME</h2>
                 <p>
-                    Especialista en <strong>flujos de datos complejos</strong> y
-                    <strong>gobernanza de datos</strong>. Capaz de mediar entre
-                    algoritmos avanzados y equipos multidisciplinares para
-                    garantizar la calidad de datos críticos. Actualmente en
-                    transición a <strong>Backend Developer</strong>, formándome
-                    en <strong>Python y Go</strong> (boot.dev). Experiencia
-                    internacional en Milán y Madrid.
+                    Specialist in <strong>complex data flows, ETL and data governance</strong>,
+                    with 3+ years delivering for <strong>banking and insurance clients</strong>
+                    in large, international teams. Currently implementing a
+                    <strong>data-estate migration for a major Greek bank</strong> from Netezza
+                    to <strong>IBM watsonx.data (Iceberg)</strong> and
+                    <strong>Microsoft Fabric</strong> on IBM DataStage NextGen. Strong in SQL
+                    tuning (Netezza, Teradata, Oracle) and Python, with a
+                    <strong>critical eye for data quality</strong>. Currently growing into
+                    <strong>Backend Development</strong> with <strong>Python and Go</strong>
+                    (boot.dev). Based in Granada, Spain, with international experience in Milan.
                 </p>
                 <button class="btn btn-primary" onclick="toggleSincere()">
-                    ACTIVAR MODO SINCERO 😎
+                    HONEST MODE 😎
                 </button>
                 <div class="sincere-box" id="sincereBox">
                     <p>
-                    Buenas! me gusta cacharrear con cosas y ahí entra el software,
-                    me chifla a hacer deporte, amo la conciliacion laboral y dormir 8 horas al dia.
-
-                    <p>
-                   Uso linux por pesada (ahora uso mac, (hipocrita lo sé)) y me gustan los videojuegos pero me he quitado del CSGO por el bien de mi vista.
+                        Hi! I love tinkering with things: besides software, I like
+                        cars, hardware and soon, motorcycles as well. I love sport currently playing rugby, and I love work-life balance and sleeping 8 hours a day.
                     </p>
-
-                    <p>Sé que tengo mucho texto
-                    para tener tan pocos años, a eso añadele saltos de senioridad bastante gordos, por suerte/desgracia, no miento.</p>
-                    <p>Los años que he trabajado he salido curtida (en contra de mi voluntad) asi que ahora que me quiten lo bailao
+                    <p>
+                        I used Linux out of pure stubbornness (now I use a Mac,
+                        hypocritical, I know), and I like video games, but I've quit
+                        CS:GO for the sake of my eyesight.
+                    </p>
+                    <p>
+                        I know that's a lot of experience for so few years, plus some
+                        pretty big jumps in seniority. For better or worse, I'm not lying.
+                    </p>
+                    <p>
+                        The years I've worked have toughened me up (against my will),
+                        so nobody can take that away from me now.
                     </p>
                 </div>
             </div>
 
-            <!-- Tarjeta "Habilidades Técnicas" -->
+            <!-- Technical skills -->
             <div class="card">
-                <h2>/ HABILIDADES TÉCNICAS</h2>
+                <h2>/ TECHNICAL SKILLS</h2>
                 <table class="skills-table">
                     <tr>
-                        <td><strong>Lenguajes:</strong></td>
-                        <td>Python, Go, SQL, Bash/Shell</td>
+                        <td><strong>Languages:</strong></td>
+                        <td>Python, Go, SQL, Bash/Shell, Java</td>
                     </tr>
                     <tr>
-                        <td><strong>ETL & Data Pipelines:</strong></td>
+                        <td><strong>Data platforms:</strong></td>
                         <td>
-                            Diseño de pipelines, limpieza de datos, algoritmos
-                            de matching (Soundex, Jaro-Winkler, Levenshtein)
+                            IBM DataStage NextGen &amp; 11.7, IBM watsonx.data (Iceberg),
+                            Microsoft Fabric (Delta Lake), Cloud Pak for Data
                         </td>
                     </tr>
                     <tr>
-                        <td><strong>Bases de Datos:</strong></td>
+                        <td><strong>ETL &amp; Data Pipelines:</strong></td>
                         <td>
-                            MySQL, Teradata, Oracle SQL, optimización de queries
+                            Pipeline design, config-driven frameworks, data cleansing,
+                            data governance, matching algorithms (Soundex, Jaro-Winkler,
+                            Levenshtein)
                         </td>
                     </tr>
                     <tr>
-                        <td><strong>Herramientas:</strong></td>
-                        <td>Git, ArcGIS Pro, Unix/Linux</td>
+                        <td><strong>Databases:</strong></td>
+                        <td>Netezza, Teradata, Oracle SQL, MySQL, query optimisation</td>
                     </tr>
                     <tr>
-                        <td><strong>Backend (en formación):</strong></td>
-                        <td>Desarrollo de APIs, Pygame, concurrency en Go</td>
+                        <td><strong>Scheduling &amp; Tools:</strong></td>
+                        <td>OpCon, Autosys / IBM Workload Scheduler, Git, ArcGIS Pro, Unix/Linux</td>
                     </tr>
                     <tr>
-                        <td><strong>Idiomas:</strong></td>
-                        <td>Español (nativo), Inglés (C1), Italiano (B2)</td>
+                        <td><strong>AI Engineering:</strong></td>
+                        <td>Agentic SDLC and AI-assisted development (self-taught, learning on my own)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Backend (in training):</strong></td>
+                        <td>API development, Python, Go, concurrency in Go, Swift</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Languages spoken:</strong></td>
+                        <td>Spanish (native), English (C1), Italian (B2)</td>
                     </tr>
                 </table>
             </div>
 
-            <!-- Tarjeta "Experiencia Laboral" -->
+            <!-- Recent experience -->
             <div class="card">
-                <h2>/ EXPERIENCIA RECIENTE</h2>
+                <h2>/ RECENT EXPERIENCE</h2>
+
+                <div class="experience-item">
+                    <div class="job-header">
+                        <span>Senior Data Engineer</span>
+                        <span class="company">Accenture</span>
+                    </div>
+                    <div class="date">Apr 2026 — Present · Granada (remote) · via NS Grupo</div>
+                    <ul class="achievements">
+                        <li>
+                            <strong>Major Greek bank – data-estate migration:</strong>
+                            implementing a config-driven propagation framework that migrates
+                            the bank's on-premise data warehouse to IBM watsonx.data (Iceberg)
+                            and Microsoft Fabric (Delta Lake) in parallel, built on IBM
+                            DataStage NextGen and orchestrated by the bank's enterprise scheduler.
+                        </li>
+                        <li>
+                            <strong>Framework design:</strong> onboarding a new table is a
+                            metadata change rather than ETL development; extraction runs once
+                            and feeds both targets independently; every run is checkpointed,
+                            so a failure resumes rather than restarts.
+                        </li>
+                        <li>
+                            <strong>Platform troubleshooting:</strong> diagnosing connector
+                            defects that only surface at large volumes, Iceberg concurrency and
+                            partitioning behaviour, and source-side extraction constraints from
+                            logs and stack traces; escalating to IBM when a product fix is
+                            required and designing workarounds to keep the migration moving.
+                        </li>
+                        <li>
+                            <strong>Team:</strong> onboarding a junior engineer and establishing
+                            development standards within a multi-vendor, distributed team.
+                        </li>
+                    </ul>
+                    <div class="badge-grid">
+                        <span class="badge">DataStage NextGen</span>
+                        <span class="badge">watsonx.data</span>
+                        <span class="badge">Iceberg</span>
+                        <span class="badge">Microsoft Fabric</span>
+                        <span class="badge">Netezza</span>
+                        <span class="badge">OpCon</span>
+                    </div>
+                </div>
+
                 <div class="experience-item">
                     <div class="job-header">
                         <span>Data Engineer</span>
                         <span class="company">Logicalis</span>
                     </div>
-                    <div class="date">Dic 2023 — Actualidad</div>
+                    <div class="date">Dec 2023 — Apr 2026</div>
                     <ul class="achievements">
                         <li>
-                            <strong>Proyecto Único (Vodafone España):</strong>
-                            Ingeniero Jefe de datos en proyecto de gobernanza
-                            para el Gobierno de España.
+                            <strong>Major Spanish insurance companies – fraud detection:</strong>
+                            designed and implemented complex IBM DataStage ETLs preparing
+                            historical and near-real-time datasets for fraud-detection models.
                         </li>
                         <li>
-                            <strong>Aseguramiento de Calidad de Datos:</strong>
-                            Análisis geoespacial y algoritmos (Fuzzy matching,
-                            Soundex, Jaro-Winkler, Levenshtein).
+                            <strong>Legacy ETL re-engineering:</strong> optimised advanced SQL
+                            over large, sparsely documented databases and re-engineered legacy
+                            ETL workflows for performance and maintainability.
                         </li>
                         <li>
-                            <strong>AMA Insurance:</strong> Creación de
-                            secuencias complejas en DataStage para preparar
-                            datasets destinados a redes neuronales de detección
-                            de fraude.
+                            <strong>Major telecom operator &amp; EU rural-connectivity programme –
+                            data quality:</strong> designed the programme's data framework;
+                            cleaned and validated critical infrastructure and geospatial data
+                            with fuzzy matching (Soundex, Jaro-Winkler, Levenshtein) and ArcGIS
+                            Pro; built Python / SQL scripts to deduplicate and correct coverage data.
                         </li>
                     </ul>
                     <div class="badge-grid">
-                        <span class="badge">Python</span>
-                        <span class="badge">SQL</span>
                         <span class="badge">DataStage</span>
+                        <span class="badge">SQL</span>
+                        <span class="badge">MySQL</span>
+                        <span class="badge">Python</span>
                         <span class="badge">ArcGIS Pro</span>
-                        <span class="badge">Linux</span>
+                        <span class="badge">Unix</span>
                     </div>
                 </div>
+
                 <div class="experience-item">
                     <div class="job-header">
                         <span>Junior Developer</span>
                         <span class="company">NTT DATA</span>
                     </div>
-                    <div class="date">Dic 2022 — Ene 2024 (Milán)</div>
+                    <div class="date">Dec 2022 — Jan 2024 (Milan)</div>
                     <ul class="achievements">
                         <li>
-                            Mantenimiento de un <strong>Data Lake</strong> en
-                            Teradata y desarrollo de jobs en DataStage para
-                            procesar datos críticos.
+                            <strong>Major Italian bank:</strong> maintained and developed a
+                            <strong>Teradata / IBM DataStage data lake</strong> for a tier-1
+                            Italian banking group, processing critical data.
                         </li>
                         <li>
-                            Automatización de tareas con scripts en Bash,
-                            ahorrando <strong>10 horas/semana</strong> al equipo
-                            de operaciones.
+                            Teradata and Oracle SQL development and query tuning for production
+                            systems; task automation with Bash scripts.
                         </li>
                         <li>
-                            Formación de nuevos colegas (hasta 14 personas) en
-                            procesos técnicos y Knowledge Transfer.
+                            Orchestration with Autosys / IBM Workload Scheduler and on-call
+                            production support with international, multidisciplinary teams.
                         </li>
                         <li>
-                            Soporte on-call para resolución de incidencias en
-                            sistemas de producción.
+                            Communication with colleagues and clients in English, Italian and Spanish.
+                        </li>
+                        <li>
+                            Trained up to 14 colleagues through technical processes, on-call
+                            sessions and knowledge transfers.
                         </li>
                     </ul>
                     <div class="badge-grid">
@@ -165,28 +235,32 @@
                         <span class="badge">Bash</span>
                         <span class="badge">Autosys</span>
                         <span class="badge">DataStage</span>
+                        <span class="badge">IBM Workload Scheduler</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Tarjeta "Formación" -->
+            <!-- Education -->
             <div class="card">
-                <h2>/ EDUCACIÓN Y LOGROS</h2>
+                <h2>/ EDUCATION AND ACHIEVEMENTS</h2>
+
                 <div class="experience-item">
                     <div class="job-header">
-                        <span>Máster en Desarrollo Backend</span>
+                        <span>Master's in Backend Development</span>
                         <span class="company">boot.dev</span>
                     </div>
-                    <div class="date">2025 — On going</div>
+                    <div class="date">2025 — Ongoing</div>
                     <ul class="achievements">
                         <li>
-                            Enfoque en <strong>Python y Go</strong>, con
-                            proyectos prácticos en desarrollo de videojuegos
-                            (Pygame) y APIs, LLMs.
+                            Focus on <strong>Python and Go</strong>, with hands-on projects in
+                            game development (Pygame), APIs and LLMs.
                         </li>
                         <li>
-                            Aplicación de patrones de diseño (Observer, Factory)
-                            y manejo de estados en sistemas backend.
+                            Design patterns (Observer, Factory) and state management in backend systems.
+                        </li>
+                        <li>
+                            Certificates: Python, OOP in Python, Functional Programming, Linux,
+                            Git (2025–2026).
                         </li>
                     </ul>
                     <div class="badge-grid">
@@ -196,26 +270,21 @@
                         <span class="badge">Backend</span>
                     </div>
                 </div>
+
                 <div class="experience-item">
                     <div class="job-header">
-                        <span
-                            >Formación Profesional Superior en Desarollo
-                            Multiplataforma</span
-                        >
-                        <span class="company">IES FRANCISCO AYALA</span>
+                        <span>Higher Technician in Multiplatform Application Development</span>
+                        <span class="company">IES Francisco Ayala</span>
                     </div>
                     <div class="date">2020 — 2022</div>
                     <ul class="achievements">
                         <li>
-                            Enfoque en <strong>Andorid y Java</strong>, con
-                            proyectos prácticos como desarolo de juegos y desarollo de aplicaciones android completas
-                        </li>
-                        <li>
-
+                            Focus on <strong>Android (full stack) and Java (backend)</strong>,
+                            with hands-on projects including games and complete Android applications.
                         </li>
                     </ul>
                     <div class="badge-grid">
-                        <span class="badge">Acceso a Datos (Hibernate,JDBC,Oracle)</span>
+                        <span class="badge">Data access (Hibernate, JDBC, Oracle)</span>
                         <span class="badge">Java</span>
                         <span class="badge">Kotlin</span>
                         <span class="badge">Swift</span>
@@ -223,26 +292,34 @@
                         <span class="badge">Python</span>
                     </div>
                 </div>
-            </div>
 
-            <!-- Tarjeta "Proyectos Personales" -->
-            <div class="card">
-                <h2>/ PROYECTOS PERSONALES (en construccion)</h2>
                 <div class="experience-item">
                     <div class="job-header">
-                        <span>Motor de juego en Python con Pygame</span>
+                        <span>MongoDB SI Associate</span>
+                        <span class="date">2025</span>
+                    </div>
+                    <div class="badge-grid">
+                        <span class="badge">MongoDB</span>
+                        <span class="badge">NoSQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personal projects -->
+            <div class="card">
+                <h2>/ PERSONAL PROJECTS (in progress)</h2>
+                <div class="experience-item">
+                    <div class="job-header">
+                        <span>Python game engine built on Pygame</span>
                         <span class="date">2026</span>
                     </div>
                     <ul class="achievements">
                         <li>
-                            Desarrollo de un videojuego 2D aplicando patrones de
-                            diseño (Observer, Factory) y lógica de backend.
+                            2D video game applying design patterns (Observer, Factory) and backend logic.
                         </li>
                         <li>
-                            Código disponible en
-                            <a href="https://github.com/tuusuario" class="link"
-                                >GitHub</a
-                            >.
+                            Code available on
+                            <a href="https://github.com/turingtested4/pythonpewpew" class="link" target="_blank" rel="noopener">GitHub</a>.
                         </li>
                     </ul>
                     <div class="badge-grid">
@@ -251,34 +328,136 @@
                         <span class="badge">OOP</span>
                     </div>
                 </div>
-                <!-- TFG ---->
-                 <h3>Proyectos de la formacion</h3>
+
+                <h3>Training projects</h3>
                 <div class="experience-item">
                     <div class="job-header">
-                        <span>TFG, Aplicacion de gestion de ambulatorio medico con consulta de sintomologia</span>
+                        <span>Final project: outpatient clinic management app with symptom lookup</span>
                         <span class="date">2022</span>
                     </div>
                     <ul class="achievements">
                         <li>
-                           Desarollo de aplicacion en Android como TFG final de mi formacion profesional, con un 9 de nota.
+                            Android application developed as the final project of my vocational
+                            degree, graded 9/10.
                         </li>
                         <li>
-                            Código disponible en
-                            <a href="https://github.com/tuusuario" class="link"
-                                >GitHub</a
-                            >.
+                            Code available on
+                            <a href="https://github.com/turingtested4" class="link" target="_blank" rel="noopener">GitHub</a>.
                         </li>
                     </ul>
                     <div class="badge-grid">
-
-                        <span class="badge">Nota: 9</span>
-
+                        <span class="badge">Android</span>
+                        <span class="badge">Grade: 9/10</span>
                     </div>
+                </div>
+            </div>
+            </div>
+            <!-- end CV view -->
 
+            <!-- ============ PROJECTS VIEW ============ -->
+            <div class="view" id="view-projects" hidden>
+                <div class="card projects-intro">
+                    <h2>/ PICK A CARD</h2>
+                    <p>Each card is a project. Pick one to flip it open.</p>
+                </div>
+
+                <div class="deck" id="deck">
+                    <button class="pcard pcard-soon" data-project="heatmap" style="--i:0">
+                        <span class="pcard-tag tag-soon">DATA</span>
+                        <canvas class="pcard-heat" width="180" height="120"></canvas>
+                        <span class="pcard-icon">🛠️</span>
+                        <span class="pcard-title">Transport Heat Map</span>
+                        <span class="pcard-sub">Where the city moves</span>
+                    </button>
+                    <button class="pcard" data-project="pygame" style="--i:1">
+                        <span class="pcard-tag tag-game">GAME</span>
+                        <span class="pcard-icon">🕹️</span>
+                        <span class="pcard-title">Pygame Engine</span>
+                        <span class="pcard-sub">pythonpewpew</span>
+                    </button>
+                    <button class="pcard" data-project="clinic" style="--i:2">
+                        <span class="pcard-tag tag-app">APP</span>
+                        <span class="pcard-icon">🩺</span>
+                        <span class="pcard-title">Clinic App</span>
+                        <span class="pcard-sub">Final project · 9/10</span>
+                    </button>
+                    <button class="pcard pcard-soon" data-project="pipeline" style="--i:3">
+                        <span class="pcard-tag tag-soon">SOON</span>
+                        <span class="pcard-icon">🛠️</span>
+                        <span class="pcard-title">Data Pipeline</span>
+                        <span class="pcard-sub">Coming 2027</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Project detail (flipped card) -->
+            <div class="modal" id="projectModal" hidden>
+                <div class="modal-backdrop" data-close></div>
+                <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+                    <button class="modal-close" data-close aria-label="Close">✕</button>
+                    <div id="modalBody"></div>
+                </div>
             </div>
         </div>
 
-        <!-- Enlace al archivo JS externo -->
+        <!-- Project details: edit the text here -->
+        <template id="tpl-heatmap">
+            <span class="pcard-tag tag-data">DATA</span>
+            <h3 id="modalTitle" class="modal-title">Transport Heat Map</h3>
+            <canvas class="modal-heat" width="560" height="260"></canvas>
+            <p class="placeholder-note">⚠️ Placeholder: animated preview with sample data. The real map goes here.</p>
+            <ul class="achievements">
+                <li><strong>What:</strong> So, this one is in the making but i hate when i get stuck on traffic or when traffic doesnt make sense (jam in no pick up kids from school hour yk) so i would like to create a heatmap of traffic in my city during the day</li>
+                <li><strong>How:</strong> dgt probably i need to sit with this</li>
+                <li><strong>Why it matters:</strong> To learn, and to see that i am not crazy and no ones in this place know how to drive</li>
+            </ul>
+            <div class="badge-grid">
+                <span class="badge">Python, maybe go idk</span>
+            </div>
+            <p class="modal-links"><a class="btn btn-primary" href="https://github.com/turingtested4" target="_blank" rel="noopener">VIEW CODE</a></p>
+        </template>
+
+        <template id="tpl-pygame">
+            <span class="pcard-tag tag-game">GAME</span>
+            <h3 id="modalTitle" class="modal-title">Python Game Engine built on Pygame</h3>
+            <ul class="achievements">
+                <li>2D video game applying design patterns (Observer, Factory) and backend logic.</li>
+                <li>State management and game loop built from scratch while studying on boot.dev.</li>
+            </ul>
+            <div class="badge-grid">
+                <span class="badge">Python</span>
+                <span class="badge">Pygame</span>
+                <span class="badge">OOP</span>
+            </div>
+            <p class="modal-links"><a class="btn btn-primary" href="https://github.com/turingtested4/pythonpewpew" target="_blank" rel="noopener">VIEW CODE</a></p>
+        </template>
+
+        <template id="tpl-clinic">
+            <span class="pcard-tag tag-app">APP</span>
+            <h3 id="modalTitle" class="modal-title">Outpatient Clinic App with Symptom Lookup</h3>
+            <ul class="achievements">
+                <li>Android application developed as the final project of my vocational degree (2022).</li>
+                <li>Graded <strong>9/10</strong>.</li>
+            </ul>
+            <div class="badge-grid">
+                <span class="badge">Android</span>
+                <span class="badge">Java</span>
+            </div>
+            <p class="modal-links"><a class="btn btn-primary" href="https://github.com/turingtested4/ambu_TFG.git" target="_blank" rel="noopener">VIEW CODE</a></p>
+        </template>
+
+        <template id="tpl-pipeline">
+            <span class="pcard-tag tag-soon">SOON</span>
+            <h3 id="modalTitle" class="modal-title">End-to-End Data Pipeline</h3>
+            <p>Currently in the works. An end-to-end modern data stack project: public API ingestion, a cloud or local warehouse, transformations, orchestration and CI.</p>
+            <div class="badge-grid">
+                <span class="badge">Python</span>
+                <span class="badge">dbt</span>
+                <span class="badge">DuckDB / BigQuery</span>
+                <span class="badge">Airflow / Dagster</span>
+            </div>
+        </template>
+
         <script src="script.js"></script>
     </body>
 </html>

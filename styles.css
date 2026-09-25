@@ -149,7 +149,8 @@ h2 {
 h3 {
     border: 2px solid var(--border);
     padding: 5px 15px;
-    font-size: 1 rem;
+    font-size: 1rem;
+    display: inline-block;
     margin-bottom: 10px;
     color: var(--text);
 }
@@ -205,6 +206,22 @@ h3 {
     font-weight: 900;
     font-size: 1.3rem;
     margin-bottom: 5px;
+    gap: 16px;
+}
+
+.job-header .company {
+    text-align: right;
+}
+
+/* Mobile: stack job title and company */
+@media (max-width: 600px) {
+    body { padding: 12px; }
+    .job-header { flex-direction: column; gap: 2px; font-size: 1.1rem; }
+    .job-header .company { text-align: left; }
+    .role-title { font-size: 1.8rem; }
+    .subtitle { font-size: 0.95rem; }
+    .title-card { height: 150px; }
+    .skills-table td:first-child { width: 40%; }
 }
 
 .company {
@@ -270,4 +287,257 @@ h3 {
 
 .link:hover {
     text-decoration: underline;
+}
+
+/* ============================================= */
+/* 📌 TABS (CV / PROJECTS) */
+/* ============================================= */
+.tabs {
+    display: flex;
+    gap: 12px;
+    margin: 10px 0 30px;
+}
+
+.tab {
+    font: inherit;
+    font-weight: 900;
+    font-size: 1.1rem;
+    background: white;
+    border: 3px solid var(--border);
+    box-shadow: 3px 3px 0 var(--border);
+    padding: 8px 18px;
+    cursor: pointer;
+    color: var(--text);
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.tab:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--border); }
+
+.tab.active {
+    background: var(--primary);
+    color: white;
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 var(--border);
+}
+
+.tab-new {
+    font-size: 0.65rem;
+    background: #ff8c00;
+    color: white;
+    border: 2px solid var(--border);
+    padding: 1px 5px;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+.tab.active .tab-new { background: white; color: var(--primary); }
+
+/* ============================================= */
+/* 📌 PROJECT CARD DECK */
+/* ============================================= */
+.projects-intro p { margin: 0; }
+
+.deck {
+    position: relative;
+    height: 380px;
+    margin: 10px 0 40px;
+}
+
+.pcard {
+    --n: 4;
+    --spread: 150px;
+    --angle: 7deg;
+    position: absolute;
+    left: 50%;
+    top: 40px;
+    width: 200px;
+    height: 280px;
+    margin-left: -100px;
+    font: inherit;
+    color: var(--text);
+    background: white;
+    border: 3px solid var(--border);
+    box-shadow: 5px 5px 0 var(--border);
+    padding: 14px;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transform-origin: 50% 120%;
+    transform:
+        translateX(calc((var(--i) - (var(--n) - 1) / 2) * var(--spread)))
+        rotate(calc((var(--i) - (var(--n) - 1) / 2) * var(--angle)));
+    transition: transform 0.35s cubic-bezier(.2,.9,.3,1.3), box-shadow 0.2s;
+    z-index: calc(var(--i) + 1);
+}
+
+/* Deal-in animation on first view */
+.deck.dealing .pcard {
+    animation: deal 0.6s cubic-bezier(.2,.9,.3,1.2) backwards;
+    animation-delay: calc(var(--i) * 0.12s);
+}
+
+@keyframes deal {
+    from { transform: translate(0, 300px) rotate(0deg); opacity: 0; }
+}
+
+.pcard:hover,
+.pcard:focus-visible {
+    transform:
+        translateX(calc((var(--i) - (var(--n) - 1) / 2) * var(--spread)))
+        translateY(-40px)
+        rotate(0deg)
+        scale(1.05);
+    box-shadow: 8px 8px 0 var(--border);
+    z-index: 20;
+    outline: none;
+}
+
+.pcard-tag {
+    align-self: flex-start;
+    font-size: 0.7rem;
+    font-weight: 900;
+    border: 2px solid var(--border);
+    padding: 2px 8px;
+    color: white;
+}
+
+.tag-data { background: var(--primary); }
+.tag-game { background: #ff8c00; }
+.tag-app { background: #3498db; }
+.tag-soon { background: #888; }
+
+.pcard-icon {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    font-size: 4rem;
+    background: #f9f9f9;
+    border: 2px dashed #ccc;
+}
+
+.pcard-heat {
+    flex: 1;
+    width: 100%;
+    min-height: 0;
+    border: 2px solid var(--border);
+    background: #f9f9f9;
+}
+
+.pcard-title { font-weight: 900; font-size: 1.15rem; line-height: 1.2; }
+.pcard-sub { font-size: 0.85rem; font-weight: bold; color: #555; }
+
+.pcard-soon { background: repeating-linear-gradient(45deg, #fff, #fff 10px, #f3f4ef 10px, #f3f4ef 20px); }
+
+/* ============================================= */
+/* 📌 PROJECT DETAIL (FLIPPED CARD) */
+/* ============================================= */
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    padding: 16px;
+    perspective: 1200px;
+}
+
+.modal[hidden] { display: none; }
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(243, 244, 239, 0.85);
+}
+
+.modal-card {
+    position: relative;
+    width: min(640px, 100%);
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+    background: white;
+    border: 3px solid var(--border);
+    box-shadow: 8px 8px 0 var(--border);
+    padding: 25px;
+    animation: flipIn 0.55s cubic-bezier(.2,.9,.3,1.1);
+    backface-visibility: hidden;
+}
+
+@keyframes flipIn {
+    from { transform: rotateY(-100deg) scale(0.6); opacity: 0; }
+    60%  { opacity: 1; }
+    to   { transform: rotateY(0) scale(1); }
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font: inherit;
+    font-weight: 900;
+    background: white;
+    border: 2px solid var(--border);
+    box-shadow: 2px 2px 0 var(--border);
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+}
+
+.modal-title {
+    display: block;
+    border: none;
+    padding: 0;
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin: 12px 40px 16px 0;
+}
+
+.modal-heat {
+    width: 100%;
+    border: 3px solid var(--border);
+    background: #f9f9f9;
+}
+
+.placeholder-note {
+    font-size: 0.85rem;
+    font-weight: bold;
+    background: #fff3d0;
+    border: 2px dashed var(--border);
+    padding: 6px 10px;
+}
+
+.modal-links { margin: 20px 0 0; }
+.modal-links .btn { display: inline-block; text-decoration: none; color: white; }
+
+/* ============================================= */
+/* 📌 DECK ON PHONES: swipeable row */
+/* ============================================= */
+@media (max-width: 700px) {
+    .deck {
+        height: auto;
+        display: flex;
+        gap: 16px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: 10px 4px 20px;
+        margin: 0 -4px 30px;
+    }
+    .pcard,
+    .pcard:hover,
+    .pcard:focus-visible {
+        position: relative;
+        left: auto;
+        top: auto;
+        margin: 0;
+        flex: 0 0 200px;
+        transform: none;
+        scroll-snap-align: center;
+    }
+    .tab { font-size: 0.95rem; padding: 6px 12px; }
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+    .pcard, .modal-card, .deck.dealing .pcard { animation: none; transition: none; }
 }
